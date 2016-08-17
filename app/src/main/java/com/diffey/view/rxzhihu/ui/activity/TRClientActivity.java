@@ -11,7 +11,9 @@ import android.widget.RelativeLayout;
 import com.diffey.view.rxzhihu.R;
 import com.diffey.view.rxzhihu.adapter.TRClientAdapter;
 import com.diffey.view.rxzhihu.api.TRApi;
+import com.diffey.view.rxzhihu.api.TRApi1;
 import com.diffey.view.rxzhihu.api.TRService;
+import com.diffey.view.rxzhihu.api.TRService1;
 import com.diffey.view.rxzhihu.base.SimpleActivity;
 import com.diffey.view.rxzhihu.bean.ChatBean;
 import com.diffey.view.rxzhihu.bean.NewsEntity;
@@ -46,7 +48,7 @@ public class TRClientActivity extends SimpleActivity {
     RelativeLayout trcBottom;
 
     private TRClientAdapter trClientAdapter;
-    private TRApi service;
+    private TRApi1 service;
 
     @Override
     protected int getContentView() {
@@ -78,7 +80,7 @@ public class TRClientActivity extends SimpleActivity {
     @Override
     protected void initData() {
         super.initData();
-        service = TRService.createTRService();
+        service = TRService1.createTRService();
         trClientAdapter.addData(new ChatBean(TRClientAdapter.TYPE_ROBOT, Contant.TRC_ROBOT_REC));
     }
 
