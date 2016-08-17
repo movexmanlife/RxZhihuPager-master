@@ -1,6 +1,7 @@
 package com.diffey.view.rxzhihu.api;
 
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -12,6 +13,7 @@ public class TRService {
     private static Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(BASE_TRC_URL)
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .build();
 
     private TRService() {

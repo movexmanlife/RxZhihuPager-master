@@ -14,6 +14,7 @@ import com.diffey.view.rxzhihu.api.TRApi;
 import com.diffey.view.rxzhihu.api.TRService;
 import com.diffey.view.rxzhihu.base.SimpleActivity;
 import com.diffey.view.rxzhihu.bean.ChatBean;
+import com.diffey.view.rxzhihu.bean.NewsEntity;
 import com.diffey.view.rxzhihu.bean.TREntity;
 import com.diffey.view.rxzhihu.contant.Contant;
 
@@ -22,6 +23,10 @@ import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 public class TRClientActivity extends SimpleActivity {
 
@@ -95,27 +100,27 @@ public class TRClientActivity extends SimpleActivity {
     }
 
     private void gainChat(String str) {
-        Call<TREntity> call = service.getTRResponse(Contant.TRC_KEY, str, Contant.TRC_USER_ID);
-        call.enqueue(new Callback<TREntity>() {
-            @Override
-            public void onResponse(Call<TREntity> call, Response<TREntity> response) {
-                TREntity entity = response.body();
-                if (entity != null) {
-                    String str;
-                    if (entity.getCode() == 40004) {
-                        str = Contant.TRC_ROBOT_REST;
-                    } else {
-                        str = entity.getText();
+        service.getTRResponse(Contant.TRC_KEY, str, Contant.TRC_USER_ID)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<TREntity>() {
+                    @Override
+                    public void call(TREntity trEntity) {
+                        if (trEntity != null) {
+                            String str;
+                            if (trEntity.getCode() == 40004) {
+                                str = Contant.TRC_ROBOT_REST;
+                            } else {
+                                str = trEntity.getText();
+                            }
+                            addData(new ChatBean(TRClientAdapter.TYPE_ROBOT, str));
+                        }
                     }
-                    addData(new ChatBean(TRClientAdapter.TYPE_ROBOT, str));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<TREntity> call, Throwable t) {
-                addData(new ChatBean(TRClientAdapter.TYPE_ROBOT, Contant.TRC_ROBOT_FAILED));
-            }
-        });
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        addData(new ChatBean(TRClientAdapter.TYPE_ROBOT, Contant.TRC_ROBOT_FAILED));
+                    }
+                });
     }
 
     private void addData(ChatBean chatBean) {
