@@ -1,5 +1,6 @@
 package com.diffey.view.rxzhihu.ui.activity;
 
+import android.content.Intent;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
@@ -10,27 +11,19 @@ import android.widget.RelativeLayout;
 
 import com.diffey.view.rxzhihu.R;
 import com.diffey.view.rxzhihu.adapter.TRClientAdapter;
-import com.diffey.view.rxzhihu.api.TRApi;
 import com.diffey.view.rxzhihu.api.TRApi1;
-import com.diffey.view.rxzhihu.api.TRService;
 import com.diffey.view.rxzhihu.api.TRService1;
-import com.diffey.view.rxzhihu.base.SimpleActivity;
+import com.diffey.view.rxzhihu.base.BaseActivity;
 import com.diffey.view.rxzhihu.bean.ChatBean;
-import com.diffey.view.rxzhihu.bean.NewsEntity;
 import com.diffey.view.rxzhihu.bean.TREntity;
 import com.diffey.view.rxzhihu.contant.Contant;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 
-public class TRClientActivity extends SimpleActivity {
+public class TRClientActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -51,13 +44,22 @@ public class TRClientActivity extends SimpleActivity {
     private TRApi1 service;
 
     @Override
+    protected void obtainParam(Intent intent) {
+
+    }
+
+    @Override
+    protected void beforeContentView() {
+
+    }
+
+    @Override
     protected int getContentView() {
         return R.layout.activity_trclient;
     }
 
     @Override
     protected void initView() {
-        super.initView();
         ButterKnife.bind(this);
 
         initToolBar();
@@ -79,14 +81,12 @@ public class TRClientActivity extends SimpleActivity {
 
     @Override
     protected void initData() {
-        super.initData();
         service = TRService1.createTRService();
         trClientAdapter.addData(new ChatBean(TRClientAdapter.TYPE_ROBOT, Contant.TRC_ROBOT_REC));
     }
 
     @Override
     protected void initListener() {
-        super.initListener();
         trcBtnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

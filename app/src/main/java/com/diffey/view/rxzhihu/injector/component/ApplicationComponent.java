@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.diffey.view.rxzhihu.ZhihuApplication;
 import com.diffey.view.rxzhihu.api.TRApi;
-import com.diffey.view.rxzhihu.api.ZhihuApi;
 import com.diffey.view.rxzhihu.base.BaseNewActivity;
 import com.diffey.view.rxzhihu.injector.module.ApiModule;
 import com.diffey.view.rxzhihu.injector.module.ApplicationModule;
@@ -26,5 +25,4 @@ public interface ApplicationComponent {
     void inject(ZhihuApplication zhihuApplication);
 
     void inject(BaseNewActivity baseNewActivity);
-//    ZhihuApi getZhihuApi();
 }

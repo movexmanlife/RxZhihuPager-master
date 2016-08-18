@@ -9,4 +9,5 @@
     <string name="setting_about_developer">关于开发者</string>
     <string name="setting_base_title">基本设置</string>
     <string name="setting_developer_info">我是xman，一个爱阅读、爱思考的程序猿</string>
+    <string name="article_detail">文章详情</string>
 </resources>

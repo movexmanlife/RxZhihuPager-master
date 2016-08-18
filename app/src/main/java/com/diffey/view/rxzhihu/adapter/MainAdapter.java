@@ -17,6 +17,7 @@ import com.diffey.view.rxzhihu.R;
 import com.diffey.view.rxzhihu.bean.StoriesEntity;
 import com.diffey.view.rxzhihu.db.bean.NewBean;
 import com.diffey.view.rxzhihu.db.dao.NewDao;
+import com.diffey.view.rxzhihu.ui.article.ArticleDetailActivity;
 import com.diffey.view.rxzhihu.util.IntentUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -80,7 +81,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainHodler> {
                         }
                     }).start();
                 }
-                IntentUtils.toStoryActivity(mContext, position, storiesList);
+                ArticleDetailActivity.start(mContext, position, storiesList);
             }
         });
         holder.itemMainImg.setOnClickListener(new View.OnClickListener(){

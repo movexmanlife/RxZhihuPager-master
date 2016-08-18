@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.diffey.view.rxzhihu.ui.activity.StoryActivity"
+            android:name="com.diffey.view.rxzhihu.ui.article.ArticleDetailActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.diffey.view.rxzhihu.ui.setting.SettingActivity"

@@ -8,32 +8,32 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.diffey.view.rxzhihu.bean.StoriesEntity;
 import com.diffey.view.rxzhihu.ui.fragment.StoryFragment;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Created by diff on 2016/2/5.
+ *
  */
 public class StoryAdapter extends FragmentPagerAdapter {
-    private int curPos;
-    private ArrayList<StoriesEntity> storiesEntities;
+    private int mCurPosition;
+    private List<StoriesEntity> mStoriesEntityList;
 
-    public StoryAdapter(FragmentManager fm, int pos, ArrayList<StoriesEntity> storiesEntities) {
+    public StoryAdapter(FragmentManager fm, int position, List<StoriesEntity> storiesEntityList) {
         super(fm);
-        this.curPos = pos;
-        this.storiesEntities = storiesEntities;
+        this.mCurPosition = position;
+        this.mStoriesEntityList = storiesEntityList;
     }
 
     @Override
     public Fragment getItem(int position) {
         StoryFragment storyFragment = new StoryFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt(StoryFragment.PARAM_ID, storiesEntities.get(position).getId());
+        bundle.putInt(StoryFragment.PARAM_ID, mStoriesEntityList.get(position).getId());
         storyFragment.setArguments(bundle);
         return storyFragment;
     }
 
     @Override
     public int getCount() {
-        return storiesEntities == null ? 0 : storiesEntities.size();
+        return mStoriesEntityList == null ? 0 : mStoriesEntityList.size();
     }
 }

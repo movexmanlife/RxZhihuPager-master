@@ -1,15 +1,9 @@
 package com.diffey.view.rxzhihu.injector.component;
 
 import android.app.Activity;
-import android.content.Context;
 
-import com.diffey.view.rxzhihu.api.TRApi;
-import com.diffey.view.rxzhihu.api.ZhihuApi;
 import com.diffey.view.rxzhihu.injector.PerActivity;
 import com.diffey.view.rxzhihu.injector.module.ActivityModule;
-import com.squareup.otto.Bus;
-
-import javax.inject.Singleton;
 
 import dagger.Component;
 

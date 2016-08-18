@@ -2,6 +2,7 @@ package com.diffey.view.rxzhihu.ui.activity;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -13,14 +14,14 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 
 import com.diffey.view.rxzhihu.R;
-import com.diffey.view.rxzhihu.base.SimpleActivity;
+import com.diffey.view.rxzhihu.base.BaseActivity;
 import com.diffey.view.rxzhihu.ui.fragment.MainFragment;
 import com.diffey.view.rxzhihu.ui.fragment.MainMenuFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MainActivity extends SimpleActivity {
+public class MainActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -31,23 +32,36 @@ public class MainActivity extends SimpleActivity {
     private ActionBarDrawerToggle drawerToggle;
 
     @Override
+    protected void obtainParam(Intent intent) {
+
+    }
+
+    @Override
+    protected void beforeContentView() {
+
+    }
+
+    @Override
     protected int getContentView() {
         return R.layout.activity_main;
     }
 
     @Override
     protected void initView() {
-        super.initView();
         ButterKnife.bind(this);
 
         initToolBar();
         addFragment();
     }
 
+    @Override
+    protected void initListener() {
+
+    }
+
 
     @Override
     protected void initData() {
-        super.initData();
     }
 
     private void initToolBar() {

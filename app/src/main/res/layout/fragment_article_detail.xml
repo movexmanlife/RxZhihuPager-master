@@ -6,7 +6,7 @@
 
 
     <WebView
-        android:id="@+id/story_web"
+        android:id="@+id/article_detail_webview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical">

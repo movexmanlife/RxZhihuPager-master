@@ -3,18 +3,16 @@ package com.diffey.view.rxzhihu.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import com.diffey.view.rxzhihu.R;
-import com.diffey.view.rxzhihu.api.ZhihuApi;
-import com.diffey.view.rxzhihu.api.ZhihuService;
+import com.diffey.view.rxzhihu.api.ZhihuApi1;
+import com.diffey.view.rxzhihu.api.ZhihuService1;
 import com.diffey.view.rxzhihu.bean.StoryDetailsEntity;
 import com.diffey.view.rxzhihu.util.HtmlUtils;
 import com.diffey.view.rxzhihu.util.ViewUtils;
@@ -55,7 +53,7 @@ public class StoryFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_story, container, false);
+        View view = inflater.inflate(R.layout.fragment_article_detail, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
@@ -76,7 +74,7 @@ public class StoryFragment extends Fragment {
     }
 
     private void loadData() {
-        ZhihuApi service = ZhihuService.createZhihuService();
+        ZhihuApi1 service = ZhihuService1.createZhihuService();
         service.getNewsDetails(curId).observeOn(Schedulers.io())
                 .subscribeOn(Schedulers.io())
                 .map(new Func1<StoryDetailsEntity, String>() {

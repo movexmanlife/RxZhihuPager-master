@@ -19,8 +19,8 @@ import android.widget.RelativeLayout;
 
 import com.diffey.view.rxzhihu.R;
 import com.diffey.view.rxzhihu.adapter.MainAdapter;
-import com.diffey.view.rxzhihu.api.ZhihuApi;
-import com.diffey.view.rxzhihu.api.ZhihuService;
+import com.diffey.view.rxzhihu.api.ZhihuApi1;
+import com.diffey.view.rxzhihu.api.ZhihuService1;
 import com.diffey.view.rxzhihu.bean.NewsEntity;
 import com.diffey.view.rxzhihu.bean.StoriesEntity;
 import com.diffey.view.rxzhihu.db.bean.NewBean;
@@ -143,7 +143,7 @@ public class MainFragment extends Fragment implements WaveSwipeRefreshLayout.OnR
      */
     private void loadLastestData() {
         ViewUtils.setViewVisibility(commonLoading, true);
-        ZhihuApi service = ZhihuService.createZhihuService();
+        ZhihuApi1 service = ZhihuService1.createZhihuService();
         service.getLastestNews()
                 .observeOn(Schedulers.io())
                 .subscribeOn(Schedulers.io())
@@ -186,7 +186,7 @@ public class MainFragment extends Fragment implements WaveSwipeRefreshLayout.OnR
     }
 
     private void loadBeforeData(String id) {
-        ZhihuApi service = ZhihuService.createZhihuService();
+        ZhihuApi1 service = ZhihuService1.createZhihuService();
         service.getBeforeNews(id)
                 .observeOn(Schedulers.io())
                 .subscribeOn(Schedulers.io())

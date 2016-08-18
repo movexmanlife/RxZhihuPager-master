@@ -1,34 +1,47 @@
 package com.diffey.view.rxzhihu.api;
 
+import android.content.Context;
+
 import com.diffey.view.rxzhihu.bean.NewsEntity;
 import com.diffey.view.rxzhihu.bean.StoryDetailsEntity;
+import com.diffey.view.rxzhihu.bean.TREntity;
 
-import retrofit2.http.GET;
-import retrofit2.http.Path;
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
+import rx.schedulers.Schedulers;
 
 /**
- * Created by diff on 2016/2/16.
+ *
  */
+public class ZhihuApi {
+    public static final String BASE_URL = "http://news-at.zhihu.com/";
+    private ZhihuService mZhihuService;
+    private Context mContext;
 
-/**
- * （1）可以看到使用的注解非常多，参数，地址，网络请求的方式等等，都可以通过注解来实现。
- * （2）这里还可以看到有返回值，这代表着这个是同步的方法。
- * （3）还有这里返回值，需要好好注意一下，是Observable，这个类。
- */
-public interface ZhihuApi {
-
-    @GET("api/4/news/latest")
-    Observable<NewsEntity> getLastestNews();
+    public ZhihuApi(OkHttpClient okHttpClient, Context context) {
+        this.mContext = context;
+        Retrofit retrofit = new Retrofit.Builder()
+                .client(okHttpClient)
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .build();
+        mZhihuService = retrofit.create(ZhihuService.class);
+    }
 
     /**
      * 这里的Path的含义应该是将此值放进去
      * @param id
      * @return
      */
-    @GET("api/4/news/before/{id}")
-    Observable<NewsEntity> getBeforeNews(@Path("id") String id);
+    public Observable<NewsEntity> getBeforeNews(String id) {
+        return mZhihuService.getBeforeNews(id).subscribeOn(Schedulers.io());
+    }
 
-    @GET("api/4/news/{id}")
-    Observable<StoryDetailsEntity> getNewsDetails(@Path("id") int id);
+    public Observable<StoryDetailsEntity> getNewsDetails(int id) {
+        return mZhihuService.getNewsDetails(id).subscribeOn(Schedulers.io());
+    }
 }
