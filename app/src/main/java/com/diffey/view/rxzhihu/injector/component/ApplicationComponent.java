@@ -2,8 +2,10 @@ package com.diffey.view.rxzhihu.injector.component;
 
 import android.content.Context;
 
+import com.diffey.view.rxzhihu.ZhihuApplication;
 import com.diffey.view.rxzhihu.api.TRApi;
 import com.diffey.view.rxzhihu.api.ZhihuApi;
+import com.diffey.view.rxzhihu.base.BaseNewActivity;
 import com.diffey.view.rxzhihu.injector.module.ApiModule;
 import com.diffey.view.rxzhihu.injector.module.ApplicationModule;
 import com.squareup.otto.Bus;
@@ -20,5 +22,9 @@ public interface ApplicationComponent {
     Context getContext();
     Bus getBus();
     TRApi getTRApi();
+
+    void inject(ZhihuApplication zhihuApplication);
+
+    void inject(BaseNewActivity baseNewActivity);
 //    ZhihuApi getZhihuApi();
 }

@@ -14,7 +14,7 @@ import android.widget.ListView;
 import com.diffey.view.rxzhihu.R;
 import com.diffey.view.rxzhihu.adapter.MainMenuAdapter;
 import com.diffey.view.rxzhihu.bean.MenuItem;
-import com.diffey.view.rxzhihu.ui.activity.SettingActivity;
+import com.diffey.view.rxzhihu.ui.setting.SettingActivity;
 import com.diffey.view.rxzhihu.util.IntentUtils;
 
 import java.util.ArrayList;
@@ -61,7 +61,7 @@ public class MainMenuFragment extends Fragment {
         mainMenuLlSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(v.getContext(), SettingActivity.class));
+                SettingActivity.start(getActivity());
             }
         });
     }

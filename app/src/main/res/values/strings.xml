@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">ZhihuPager</string>
 
-    <string name="person_info">我是Diffey,一个爱阅读、爱思考的程序猿</string>
+    <string name="setting_title">设置</string>
+    <string name="setting_version">版本号：</string>
+    <string name="setting_version_format">版本号：%1$s</string>
+    <string name="github">GitHub</string>
+    <string name="CSDN">CSDN</string>
+    <string name="setting_about_developer">关于开发者</string>
+    <string name="setting_base_title">基本设置</string>
+    <string name="setting_developer_info">我是xman，一个爱阅读、爱思考的程序猿</string>
 </resources>
